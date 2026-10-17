@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "id": "aice-data-summary",
-  "revision": "v1.0.0",
+  "revision": "v1.0.1",
   "title": "개수·분포·그룹별 비교",
   "description": "표를 숫자 몇 개로 요약해요. 개수와 분모를 구별하고 그룹끼리 비교해요. 필수 문제 8개와 선택 도전 2개예요.",
   "sources": [
@@ -242,7 +242,7 @@
         {
           "action": "say",
           "target": "editor",
-          "text": "조심하세요. `df.median()`처럼 열을 안 고르면 글자 열 때문에 TypeError가 나요."
+          "text": "조심하세요. `df.median()`처럼 열을 안 고르면 글자 열 때문에 오류가 나요. 옛 pandas는 글자 열을 조용히 빼요."
         },
         {
           "action": "patch_code",
@@ -330,7 +330,7 @@
     {
       "id": "group-mean",
       "title": "지점별 평균은 열을 골라서",
-      "goal": "`groupby('열')`은 그 열 값이 같은 행끼리 묶어요.\n뒤에 `mean()`을 붙이면 묶음마다 평균을 내요.\n글자 열은 평균을 못 내요. 그래서 계산할 열을 먼저 골라요.\n\n지점(branch)별 평균 금액을 구해요. 먼저 실행해서 오류의 마지막 줄을 읽으세요.\nstr 자료형은 mean 계산을 못 한다는 뜻이에요.\nbranch는 묶는 기준이라 계산에서 빠져요. 남은 글자 열은 channel이죠.\n`groupby('branch')` 바로 뒤에 `['amount']`를 넣고 다시 실행하세요.",
+      "goal": "`groupby('열')`은 그 열 값이 같은 행끼리 묶어요.\n뒤에 `mean()`을 붙이면 묶음마다 평균을 내요.\n글자 열은 평균을 못 내요. 그래서 계산할 열을 먼저 골라요.\n\n지점(branch)별 평균 금액을 구해요. 먼저 실행해서 오류의 마지막 줄을 읽으세요.\nstr 자료형은 mean 계산을 못 한다는 뜻이에요. 시험의 옛 pandas는 오류 없이 글자 열을 빼기도 해요.\nbranch는 묶는 기준이라 계산에서 빠져요. 남은 글자 열은 channel이죠.\n`groupby('branch')` 바로 뒤에 `['amount']`를 넣고 다시 실행하세요.",
       "language": "python",
       "entry_file": "main.py",
       "starter_code": "import pandas as pd\n\n# 직접 만든 지점 주문 자료예요. 실제 자료가 아니에요.\ndf = pd.read_csv('data/orders.csv')\n# 지점이 같은 행끼리 묶어요.\n# 묶음마다 평균을 내려고 해요.\nresult = df.groupby('branch').mean()\n# 결과를 화면에서 확인해요.\nprint(result)\n",
